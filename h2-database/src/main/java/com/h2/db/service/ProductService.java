@@ -54,13 +54,15 @@ public class ProductService {
         else
         {
             // update existing entry
-            Optional<TblProduct> employee = repository.findById(entity.getId());
+            Optional<TblProduct> product = repository.findById(entity.getId());
 
-            if(employee.isPresent())
+            if(product.isPresent())
             {
-                TblProduct newEntity = employee.get();
+                TblProduct newEntity = product.get();
                 newEntity.setName(entity.getName());
                 newEntity.setDesc(entity.getDesc());
+                newEntity.setPrice(entity.getPrice());
+                newEntity.setImg(entity.getImg());
 
 
                 newEntity = repository.save(newEntity);

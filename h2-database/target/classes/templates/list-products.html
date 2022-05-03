@@ -15,7 +15,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a class="navbar-brand" href="/">Springboot H2 DB @OKAYCOMPUTING</a>
+        <a class="navbar-brand" href="/">DeadGameShop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,12 +30,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
             </ul>
         </div>
     </div>
@@ -47,7 +41,7 @@
 
         <div th:switch="${products}" class="container my-5">
             <p class="my-5">
-                <a href="empl/edit" class="btn btn-primary">
+                <a href="/product/edit" class="btn btn-primary">
                     <i class="fas fa-user-plus ml-2"> Add Product </i></a>
             </p>
 
@@ -58,9 +52,10 @@
                     <table class="table table-striped table-responsive-md">
                         <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>IMG</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -69,6 +64,10 @@
                         <tr th:each="product : ${products}">
                             <td th:text="${product.name}"></td>
                             <td th:text="${product.desc}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td>
+                                <img th:src="${product.img}" style="width: 100px">
+                            </td>
 
                             <td>
                                 <a th:href="@{product/edit/{id}(id=${product.id})}" class="btn btn-primary">

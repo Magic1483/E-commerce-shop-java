@@ -33,6 +33,14 @@ public class EmployeeController
 		return "list-employees";
 	}
 
+	@RequestMapping("/login")
+	public String Login(Model model)
+	{
+
+
+		return "login";
+	}
+
 	
 	
 	
@@ -75,4 +83,6 @@ public class EmployeeController
 		
 		return "redirect:/empl";
 	}
+
+
 }

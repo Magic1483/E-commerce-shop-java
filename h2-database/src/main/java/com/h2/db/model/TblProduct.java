@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class TblProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
     private Long id;
 
     @Column(name = "NAME", length = 250)
@@ -16,8 +15,31 @@ public class TblProduct {
     @Column(name = "DESC", length = 600)
     private String desc;
 
+    @Lob
+    @Column(name = "IMG")
+    private String img;
+
+    @Column(name = "PRICE")
+    private Integer price;
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public Long getId() {
-        return Long.valueOf(id);
+        return id;
     }
 
     public void setId(Long id) {

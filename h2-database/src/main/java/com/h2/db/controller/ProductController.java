@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class ProductController {
     ProductService service;
 
     @RequestMapping
-    public String getAllEmployees(Model model)
+    public String getAllProduct(Model model)
     {
         System.out.println("getAllProducts");
 
@@ -32,6 +33,21 @@ public class ProductController {
 
         return "list-products";
     }
+
+
+    @RequestMapping("/GamesList")
+    public String getAllProductForUsers(Model model)
+    {
+        System.out.println("getAllProducts");
+
+        List<TblProduct> list = service.getAllProducts();
+
+        model.addAttribute("products", list);
+
+        return "GamesList";
+    }
+
+
 
 
     @RequestMapping(path = {"/edit", "/edit/{id}"})
@@ -45,7 +61,7 @@ public class ProductController {
             model.addAttribute("product", entity);
             return "edit-product";
         } else {
-            model.addAttribute("employee", new EmployeeEntity());
+            model.addAttribute("product", new TblProduct());
             return "add-product";
         }
 
@@ -59,6 +75,16 @@ public class ProductController {
         System.out.println("deleteProductById" + id);
 
         service.deleteProductById(id);
+        return "redirect:/product";
+    }
+
+    @RequestMapping(path = "edit/createProduct", method = RequestMethod.POST)
+    public String createOrUpdateProduct(TblProduct product)
+    {
+        System.out.println("createOrUpdateProduct ");
+
+        service.createOrUpdateProduct(product);
+
         return "redirect:/product";
     }
 }

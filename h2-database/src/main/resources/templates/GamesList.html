@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap 5 Masonry Grid Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<body style="background-color: #F1E3F3">
+
+<!--    NavBar  -->
+<nav class="navbar navbar-expand-lg navbar-dark static-top " style="background-color: #49a5d3">
+    <div class="container">
+        <a class="navbar-brand" href="/product/GamesList">DeadGameShop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!--    ProductPin  -->
+<div class="container" th:switch="${products}">
+
+    <div class="row"   data-masonry='{"percentPosition": true }'>
+
+        <div class="col-md-3" th:each="product : ${products}">
+            <div class="card my-3" style="background-color: #C2BBF0">
+                <img th:src="${product.img}" class="img-fluid" alt="thumbnail">
+                <div class="card-body">
+                    <h3 class="card-title" th:text="${product.name}"></h3>
+                    <p class="card-text" th:text="${product.desc}"></p>
+                    <a href="#" class="btn btn-primary">Buy</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+</body>
+</html>
