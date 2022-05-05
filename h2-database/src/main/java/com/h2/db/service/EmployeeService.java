@@ -17,12 +17,13 @@ public class EmployeeService {
 	
 	@Autowired
 	EmployeeRepository repository;
-	
+
 	public List<EmployeeEntity> getAllEmployees()
 	{
 		System.out.println("getAllEmployees");
 		List<EmployeeEntity> result = (List<EmployeeEntity>) repository.findAll();
-		
+
+
 		if(result.size() > 0) {
 			return result;
 		} else {
@@ -30,7 +31,7 @@ public class EmployeeService {
 		}
 	}
 
-	
+
 	public EmployeeEntity getEmployeeById(Long id) throws RecordNotFoundException 
 	{
 		System.out.println("getEmployeeById");
@@ -47,7 +48,7 @@ public class EmployeeService {
 	{
 		System.out.println("createOrUpdateEmployee");
 		// Create new entry 
-		if(entity.getId()  == null) 
+		if(entity.getId()  == null)
 		{
 			entity = repository.save(entity);
 			
@@ -61,9 +62,9 @@ public class EmployeeService {
 			if(employee.isPresent()) 
 			{
 				EmployeeEntity newEntity = employee.get();
+				newEntity.setLogin(entity.getLogin());
+				newEntity.setPassword(entity.getPassword());
 				newEntity.setEmail(entity.getEmail());
-				newEntity.setFirstName(entity.getFirstName());
-				newEntity.setLastName(entity.getLastName());
 
 				newEntity = repository.save(newEntity);
 				
@@ -76,7 +77,7 @@ public class EmployeeService {
 		}
 	} 
 	
-	public void deleteEmployeeById(Long id) throws RecordNotFoundException 
+	public void deleteEmployeeById(Long id) throws RecordNotFoundException
 	{
 		System.out.println("deleteEmployeeById");
 		
@@ -88,5 +89,5 @@ public class EmployeeService {
 		} else {
 			throw new RecordNotFoundException("No employee record exist for given id");
 		}
-	} 
+	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.h2.db.exception.RecordNotFoundException;
 import com.h2.db.model.EmployeeEntity;
 import com.h2.db.service.EmployeeService;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/empl")
@@ -33,17 +34,8 @@ public class EmployeeController
 		return "list-employees";
 	}
 
-	@RequestMapping("/login")
-	public String Login(Model model)
-	{
 
 
-		return "login";
-	}
-
-	
-	
-	
 	@RequestMapping(path = {"/edit", "/edit/{id}"})
 	public String editEmployeeById(Model model, @PathVariable("id") Optional<Long> id) 
 							throws RecordNotFoundException 
