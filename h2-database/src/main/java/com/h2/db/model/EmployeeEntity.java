@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_EMPLOYEES")
 public class EmployeeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
@@ -18,7 +17,7 @@ public class EmployeeEntity {
     private String password;
 
     @Column(name = "AUTHORITY", columnDefinition = "VARCHAR_IGNORECASE(50) not null")
-    private String authority;
+    private String authority="ROLE_USER";
 
     @Column(name = "EMAIL", length = 250)
     private String email;
@@ -51,6 +50,8 @@ public class EmployeeEntity {
         return authority;
     }
 
+    public  String getStandartAuthority(){return  "ROLE_USER";}
+
     public void setAuthority(String authority) {
         this.authority = authority;
     }
@@ -62,4 +63,5 @@ public class EmployeeEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
