@@ -38,10 +38,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/empl/edit/**").permitAll()
                 .antMatchers("/product/GamesList").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/product/**","/admin","/empl/**").hasRole("ADMIN")
-                //.antMatchers("/**").permitAll()
-                .and().formLogin();
+
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("login")
+                .passwordParameter("password")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/product/GamesList");
+        http.csrf().disable();
+
 
     }
 }
