@@ -43,6 +43,18 @@ public class EmployeeService {
 			throw new RecordNotFoundException("No employee record exist for given id");
 		}
 	}
+
+	public EmployeeEntity getEmployeeByLogin(String login) throws RecordNotFoundException
+	{
+		Optional<EmployeeEntity> employee=repository.findByLogin(login);
+
+		if(employee.isPresent()) {
+			return employee.get();
+		} else {
+			throw new RecordNotFoundException("No employee record exist for given id");
+		}
+	}
+
 	
 	public EmployeeEntity createOrUpdateEmployee(EmployeeEntity entity) 
 	{

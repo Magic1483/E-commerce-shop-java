@@ -4,15 +4,15 @@ package com.h2.db.controller;
 import com.h2.db.exception.RecordNotFoundException;
 import com.h2.db.model.EmployeeEntity;
 import com.h2.db.model.TblProduct;
+import com.h2.db.service.EmployeeService;
 import com.h2.db.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +22,9 @@ public class ProductController {
 
     @Autowired
     ProductService service;
+
+    @Autowired
+    EmployeeService service2;
 
     @RequestMapping
     public String getAllProduct(Model model)
@@ -37,19 +40,25 @@ public class ProductController {
 
 
 
-    @RequestMapping("/GamesList")
-    public String getAllProductForUsers(Model model)
-    {
+    @RequestMapping(value = "/GamesList",method = RequestMethod.GET)
+    public String getAllProductForUsers(Model model,Authentication authentication) throws RecordNotFoundException {
         System.out.println("getAllProducts");
 
         List<TblProduct> list = service.getAllProducts();
 
         model.addAttribute("products", list);
+        System.out.println(service2.getEmployeeByLogin(authentication.getName()).toString());
+
 
         return "GamesList";
     }
 
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) throws RecordNotFoundException {
+        return service2.getEmployeeByLogin(authentication.getName()).toString();
+    }
 
 
     @RequestMapping(path = {"/edit", "/edit/{id}"})
