@@ -14,5 +14,11 @@
 
   
 ![2022-05-03_04-13](https://user-images.githubusercontent.com/96372727/166443372-5ef82278-cf96-4f6b-8c9d-d336b122b2d7.png)
+
 ![2022-05-03_04-13_1](https://user-images.githubusercontent.com/96372727/166443458-3ab66254-e94f-4572-a567-dea1584c6eb7.png)
+
 ![2022-05-03_04-13_2](https://user-images.githubusercontent.com/96372727/166443465-12b0eeb3-a780-4d1d-bb7f-c1ff9363d05a.png)
+Orderds page::
+![image](https://user-images.githubusercontent.com/96372727/167396353-f382deb1-01c4-487a-9aa8-e89dcd3c3572.png)
+Confirm order page::
+![image](https://user-images.githubusercontent.com/96372727/167396417-572caa6b-80c6-42b2-8cca-0054b4227e33.png)
