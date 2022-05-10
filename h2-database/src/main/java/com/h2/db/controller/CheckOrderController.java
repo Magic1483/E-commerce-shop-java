@@ -73,4 +73,14 @@ public class CheckOrderController {
 
         return "redirect:/product/GamesList";
     }
+
+    @RequestMapping(value = "product/GamesList/UserOrder")
+    public String UserOrder(Model model,Authentication authentication) throws RecordNotFoundException
+    {
+        List<CheckorderEntity> ent=service.getCheckOrderByLogin(authentication.getName());
+        model.addAttribute("orderlist",ent);
+        System.out.println(ent.size());
+
+        return "UserOrder";
+    }
 }

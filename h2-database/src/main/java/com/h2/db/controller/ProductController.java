@@ -47,8 +47,10 @@ public class ProductController {
         List<TblProduct> list = service.getAllProducts();
 
         model.addAttribute("products", list);
-        System.out.println(service2.getEmployeeByLogin(authentication.getName()).toString());
+        System.out.println(authentication.getAuthorities().toString());
 
+        String role=authentication.getAuthorities().toString();
+        model.addAttribute("role",role);
 
         return "GamesList";
     }
