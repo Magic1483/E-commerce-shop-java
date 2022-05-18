@@ -38,4 +38,37 @@ public class CheckOrderService {
             throw new RecordNotFoundException("No employee record exist for given id");
         }
     }
+
+    public List<CheckorderEntity> getCheckOrderByGame(String game) throws RecordNotFoundException
+    {
+        List<CheckorderEntity> logins=(List<CheckorderEntity>) repository.findCheckorderEntityByGame(game);
+
+        if(logins.size()>0) {
+            return logins;
+        } else {
+            throw new RecordNotFoundException("No employee record exist for given id");
+        }
+    }
+
+    public List<String> getCheckOrderLoginByGame(String game) throws RecordNotFoundException
+    {
+        List<String> logins=(List<String>) repository.findCheckorderLoginByGame(game);
+
+        if(logins.size()>0) {
+            return logins;
+        } else {
+            throw new RecordNotFoundException("No employee record exist for given id");
+        }
+    }
+
+    public List<String> getCheckOrderGamesByLogin(String login) throws RecordNotFoundException
+    {
+        List<String> games=(List<String>) repository.findCheckorderGamesByLogin(login);
+
+        if(games.size()>0) {
+            return games;
+        } else {
+            throw new RecordNotFoundException("No employee record exist for given id");
+        }
+    }
 }

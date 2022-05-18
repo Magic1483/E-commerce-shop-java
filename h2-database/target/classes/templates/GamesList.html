@@ -4,10 +4,20 @@
     <title>Bootstrap 5 Masonry Grid Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <script>
+        $('.carousel').carousel()
+    </script>
+
 </head>
 <body style="background-color: #F1E3F3">
 
@@ -47,6 +57,30 @@
 </nav>
 
 
+
+<!--Recommend Games-->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 50%;margin-left: 25%">
+    <div class="carousel-inner" >
+
+        <div  class="carousel-item active">
+            <img th:src="${RecommendProducts.get(0).img}" class="d-block w-100" alt="...">
+        </div>
+
+        <div class="carousel-item" th:each="pr: ${#numbers.sequence(1,RecommendProducts.size()-1)}">
+            <img th:src="${RecommendProducts.get(pr).img}" class="d-block w-100" alt="...">
+        </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
 <!--    ProductPin  -->
 <div class="container" th:switch="${products}">
 
@@ -66,6 +100,8 @@
 
     </div>
 </div>
+
+
 
 <!-- Bootstrap JS -->
 <script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>

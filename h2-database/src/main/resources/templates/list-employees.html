@@ -46,10 +46,10 @@
     <div class="card-body">
 
         <div th:switch="${employees}" class="container my-5">
-            <p class="my-5">
+            <!--<p class="my-5">
                 <a href="empl/edit" class="btn btn-primary">
                     <i class="fas fa-user-plus ml-2"> Add Employee </i></a>
-            </p>
+            </p>-->
 
 
             <div class="col-md-10">
@@ -62,8 +62,8 @@
                             <th>Password</th>
                             <th>Email</th>
                             <th>ROLE</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <!--<th>Edit</th>
+                            <th>Delete</th>-->
                         </tr>
                         </thead>
                         <tbody>
@@ -72,11 +72,12 @@
                             <td th:text="${employee.password}"></td>
                             <td th:text="${employee.email}"></td>
                             <td th:text="${employee.authority}"></td>
+                            <!--
                             <td>
                                 <a th:href="@{empl/edit/{id}(id=${employee.id})}" class="btn btn-primary">
                                     <i class="fas fa-user-edit ml-2"></i>
                                 </a>
-                            </td>
+                            </td>-->
                             <td>
                                 <a th:href="@{empl/em2/delete/{id}(id=${employee.id})}" class="btn btn-primary">
                                     <i class="fas fa-user-times ml-2"></i>

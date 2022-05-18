@@ -1,6 +1,7 @@
 package com.h2.db.service;
 
 import com.h2.db.exception.RecordNotFoundException;
+import com.h2.db.model.CheckorderEntity;
 import com.h2.db.model.EmployeeEntity;
 import com.h2.db.model.TblProduct;
 import com.h2.db.model.repository.TblProductRepository;
@@ -89,4 +90,17 @@ public class ProductService {
             throw new RecordNotFoundException("No product record exist for given id");
         }
     }
+
+    public List<TblProduct> getProductByName(String game) throws RecordNotFoundException
+    {
+        List<TblProduct> pro=(List<TblProduct>) repository.findProductByName(game);
+
+        if(pro.size()>0) {
+            return pro;
+        } else {
+            throw new RecordNotFoundException("No employee record exist for given id");
+        }
+    }
+
+
 }

@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class CheckOrderController {
@@ -82,5 +85,52 @@ public class CheckOrderController {
         System.out.println(ent.size());
 
         return "UserOrder";
+    }
+
+    @RequestMapping(path = "r8")
+    public String getGames(Authentication authentication) throws RecordNotFoundException {
+
+
+        List<CheckorderEntity> em=service.getCheckOrderByLogin(authentication.getName());
+
+        //Games current user
+        List<String> games = new ArrayList<>();
+        //Users, have current games
+        List<String> targetLogin=new ArrayList<>();
+
+        //get games
+        for (int i=0;i<em.size();i++)
+        {
+            games.add(em.get(i).getName());
+        }
+        //get Logins
+        for(int i=0;i<games.size();i++)
+        {
+           // targetLogin.add(service.getCheckOrderByGame(games.get(i)));
+            List<String> tmp=service.getCheckOrderLoginByGame(games.get(i));
+            targetLogin.addAll(tmp);
+        }
+        //Distinct login
+        targetLogin=targetLogin.stream().distinct().collect(Collectors.toList());
+        //Recommend games
+        List<String> targetGames=new ArrayList<>();
+        //--> List recommend games
+        for(int i=0;i<targetLogin.size();i++)
+        {
+            List<String> tmp=service.getCheckOrderGamesByLogin(targetLogin.get(i));
+            targetGames.addAll(tmp);
+        }
+        targetGames=targetGames.stream().distinct().collect(Collectors.toList());
+
+        List<TblProduct> products=new ArrayList<>();
+        for(int i=0;i<targetGames.size();i++)
+        {
+            // targetLogin.add(service.getCheckOrderByGame(games.get(i)));
+            List<TblProduct> tmp=service4.getProductByName(targetGames.get(i));
+            products.addAll(tmp);
+        }
+
+
+        return products.toString();
     }
 }

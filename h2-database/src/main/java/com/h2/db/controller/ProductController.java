@@ -2,8 +2,10 @@ package com.h2.db.controller;
 
 
 import com.h2.db.exception.RecordNotFoundException;
+import com.h2.db.model.CheckorderEntity;
 import com.h2.db.model.EmployeeEntity;
 import com.h2.db.model.TblProduct;
+import com.h2.db.service.CheckOrderService;
 import com.h2.db.service.EmployeeService;
 import com.h2.db.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/product")
@@ -25,6 +29,9 @@ public class ProductController {
 
     @Autowired
     EmployeeService service2;
+
+    @Autowired
+    CheckOrderService service3;
 
     @RequestMapping
     public String getAllProduct(Model model)
@@ -51,6 +58,48 @@ public class ProductController {
 
         String role=authentication.getAuthorities().toString();
         model.addAttribute("role",role);
+
+
+        List<CheckorderEntity> em=service3.getCheckOrderByLogin(authentication.getName());
+
+        //Games current user
+        List<String> games = new ArrayList<>();
+        //Users, have current games
+        List<String> targetLogin=new ArrayList<>();
+
+        //get games
+        for (int i=0;i<em.size();i++)
+        {
+            games.add(em.get(i).getName());
+        }
+        //get Logins
+        for(int i=0;i<games.size();i++)
+        {
+            // targetLogin.add(service.getCheckOrderByGame(games.get(i)));
+            List<String> tmp=service3.getCheckOrderLoginByGame(games.get(i));
+            targetLogin.addAll(tmp);
+        }
+        //Distinct login
+        targetLogin=targetLogin.stream().distinct().collect(Collectors.toList());
+        //Recommend games
+        List<String> targetGames=new ArrayList<>();
+        //--> List recommend games
+        for(int i=0;i<targetLogin.size();i++)
+        {
+            List<String> tmp=service3.getCheckOrderGamesByLogin(targetLogin.get(i));
+            targetGames.addAll(tmp);
+        }
+        targetGames=targetGames.stream().distinct().collect(Collectors.toList());
+
+        List<TblProduct> products=new ArrayList<>();
+        for(int i=0;i<targetGames.size();i++)
+        {
+            // targetLogin.add(service.getCheckOrderByGame(games.get(i)));
+            List<TblProduct> tmp=service.getProductByName(targetGames.get(i));
+            products.addAll(tmp);
+        }
+
+        model.addAttribute("RecommendProducts", products);
 
         return "GamesList";
     }
