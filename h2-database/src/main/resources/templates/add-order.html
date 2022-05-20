@@ -14,7 +14,7 @@
 <body style="background-color: #F1E3F3">
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark  static-top" style="background-color: #49a5d3">
+<nav class="navbar navbar-expand-lg navbar-dark  static-top" style="background-color: #49a5d3" >
     <div class="container">
 
         <a class="navbar-brand" href="/product/GamesList">DeadGameShop</a>
@@ -48,7 +48,7 @@
 
     <h3> Add Employee</h3>
 
-
+    <!-- Create order -->
     <div class="card" style="background-color: #C2BBF0">
         <div class="card-body">
             <div class="col-md-10">
@@ -74,6 +74,7 @@
 
                         <div class="col-md-6">
                             <input type="submit" class="btn btn-primary" value=" Submit ">
+                            <a th:href="@{/product/GamesList/AddComment/{id}(id=${product.id})}" class="btn btn-info">Add Comment</a>
                         </div>
 
                         <input class="form-control"
@@ -85,10 +86,59 @@
                         
                         <input type="hidden" id="id" th:field="*{id}" >
                     </div>
+
                 </form>
             </div>
         </div>
     </div>
+
+    <!--Comments-->
+    <style>
+        body{
+            background-color: #fff;
+        }
+        .container-4{
+
+            width: 80%;
+        }
+        .addtxt{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 13px;
+            width: 350px;
+            background-color: #e5e8ed;
+            font-weight: 500;
+        }
+        .form-control: focus{
+            color: #000;
+        }
+        .second{
+            width: 100%;
+            background-color: #aec6ed;
+            border-radius: 4px;
+            box-shadow: 10px 10px 5px #aaaaaa;
+        }
+        .text1{
+            font-size: 13px;
+            font-weight: 500;
+            color: inherit;
+        }
+
+        .thumbup{
+            font-size: 13px;
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        .thumbupo{
+            color: #17a2b8;
+        }
+    </style>
+
+
+    <div th:insert="fragments/comments:: ${comments.isEmpty()} ? 'comment'" ></div>
+
+
 </div>
 </body>
 
