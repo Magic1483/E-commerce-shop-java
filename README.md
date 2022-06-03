@@ -1,4 +1,4 @@
-# FuckinE-commerce-shop
+# FuckinE-commerce-shop(production)
 Модель магазина, пока реализованы только две таблицы, пользователи и продукты.
 Расположение базы данных по умолчанию: C:/h2db/sample
 
