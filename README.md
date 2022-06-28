@@ -12,8 +12,7 @@
  ADMIN:(adm12//123)
  USER:(user//123)
 
-  
-![2022-05-03_04-13](https://user-images.githubusercontent.com/96372727/166443372-5ef82278-cf96-4f6b-8c9d-d336b122b2d7.png)
+![image](https://user-images.githubusercontent.com/96372727/176159437-878da607-eed8-4f6b-bae1-aec597f55f61.png)
 
 ![2022-05-03_04-13_1](https://user-images.githubusercontent.com/96372727/166443458-3ab66254-e94f-4572-a567-dea1584c6eb7.png)
 
