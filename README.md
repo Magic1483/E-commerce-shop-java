@@ -1,16 +1,18 @@
 # FuckinE-commerce-shop(production)
 Модель магазина, пока реализованы только две таблицы, пользователи и продукты.
-Расположение базы данных по умолчанию: C:/h2db/sample
+Расположение базы данных по умолчанию: /h2db/sample
 
 Ресурсы:
+  bootstrap 5
+  jQuery
   java spring boot
   h2 data base
   maven
-  spring security
+  spring security ))/
  
 
- ADMIN:(adm12//123)
- USER:(user//123)
+ ADMIN:(admin//123)
+ 
 
 ![image](https://user-images.githubusercontent.com/96372727/176159437-878da607-eed8-4f6b-bae1-aec597f55f61.png)
 
