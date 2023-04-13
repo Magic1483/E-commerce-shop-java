@@ -1,8 +1,8 @@
 # E-commerce-shop(production)
-Модель магазина
-Расположение базы данных по умолчанию: /h2db/sample
+Store model
+Default database location: /h2db/sample
 
-Ресурсы:
+Resources:
   * bootstrap 5
   * jQuery
   * java spring boot
@@ -12,8 +12,8 @@
  
 
 
-ADMIN:(admin//123)\
-Редактирование продуктов: https://meowmeow.shrshishoshchov.repl.co/product
+Amin credentails:(admin//123)\
+Edit products page: https://meowmeow.shrshishoshchov.repl.co/product
  
 Demo: https://meowmeow.shrshishoshchov.repl.co/product/ProductList
  
